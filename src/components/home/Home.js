@@ -12,7 +12,7 @@ const Home = () => {
   const [sortType, setSortType] = useState("latest");
   const token = localStorage.getItem("token");
 
-  const getCars = async () => {
+   const getCars = useCallback(async () => {
     try {
       const res = await fetch("https://shop-backend-le06.onrender.com/api/cars", {
         headers: { Authorization: `Bearer ${token}` },
@@ -22,7 +22,7 @@ const Home = () => {
     } catch (err) {
       console.error("Xəta baş verdi:", err);
     }
-  };
+  }, [token]); 
 
   const handleDelete = async (id) => {
     try {
@@ -44,7 +44,7 @@ const Home = () => {
 
   useEffect(() => {
     getCars();
-  }, []);
+  }, [getCars]);
 
   // 🧠 Filter və sort logic
   const filteredCars = cars

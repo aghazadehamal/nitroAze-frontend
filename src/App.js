@@ -1,11 +1,8 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// Avtomobil komponentləri
-import Home from "./components/home/Home";           // əvvəlki AllProducts
-import CreateAd from "./CreateAd";      // əvvəlki AddProducts
-      // əvvəlki UpdateProducts
+// import Home from "./components/home/Home"; // İSTİFADƏ OLUNMUR, SİLİNDİ
+import CreateAd from "./CreateAd";
 import EditAd from "./EditAd";
-// Auth
 
 import Login from './components/Login';
 import Register from './components/Register';
