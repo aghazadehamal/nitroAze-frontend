@@ -24,7 +24,7 @@ const CreateAd = () => {
       formData.append("image", image); // 👈 şəkil faylını əlavə edirik
     }
 
-    fetch("http://localhost:4000/api/cars", {
+    fetch("https://shop-backend-le06.onrender.com/api/cars", {
       method: "POST",
       headers: {
         Authorization: `Bearer ${token}`, // 👈 JSON yox, FormData olduğuna görə Content-Type lazım deyil

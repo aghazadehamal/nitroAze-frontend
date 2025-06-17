@@ -21,7 +21,7 @@ const EditAd = () => {
   useEffect(() => {
     const fetchAd = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/api/cars/${id}`);
+        const res = await fetch(`https://shop-backend-le06.onrender.com/api/cars/${id}`);
         const data = await res.json();
         setFormData(data);
       } catch (err) {
@@ -50,7 +50,7 @@ const EditAd = () => {
       formDataToSend.append("image", imageFile);
     }
 
-    const res = await fetch(`http://localhost:4000/api/cars/${id}`, {
+    const res = await fetch(`https://shop-backend-le06.onrender.com/api/cars/${id}`, {
       method: "PUT",
       headers: {
         Authorization: `Bearer ${token}`,
@@ -88,7 +88,7 @@ const EditAd = () => {
       {formData.image_url && (
         <div style={{ marginBottom: "0.5rem" }}>
           <img
-            src={`http://localhost:4000${formData.image_url}`}
+            src={`https://shop-backend-le06.onrender.com${formData.image_url}`}
             alt="Cari şəkil"
             width="200"
           />

@@ -20,7 +20,7 @@ setPassword(e.target.value)
 
 
 const handleClick = () => {
-    fetch('http://localhost:4000/api/auth/register', {
+    fetch('https://shop-backend-le06.onrender.com/api/auth/register', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
