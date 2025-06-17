@@ -1,24 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Avtomobil komponentləri
+import Home from "./components/home/Home";           // əvvəlki AllProducts
+import CreateAd from "./CreateAd";      // əvvəlki AddProducts
+      // əvvəlki UpdateProducts
+import EditAd from "./EditAd";
+// Auth
+
+import Login from './components/Login';
+import Register from './components/Register';
+import Container from "./components/Container";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Container />} />
+        <Route path="/create" element={<CreateAd />} />
+        {/* <Route path="/update/:id" element={<UpdateAd />} />
+        <Route path="/view/:id" element={<ViewAd />} /> */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+        <Route path="/edit/:id" element={<EditAd />} />
+      </Routes>
+    </BrowserRouter>
   );
 }
 
