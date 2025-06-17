@@ -1,4 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
+
 import styles from './Home.module.css';
 import { Link } from "react-router-dom"; // yuxarı hissəyə əlavə et
 
