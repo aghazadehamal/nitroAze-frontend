@@ -9,9 +9,10 @@ const Navbar = () => {
         <Link to="/">🚗 AvtoElan</Link>
       </div>
       <div className={styles.links}>
-        <Link to="/add">+ Elan Yerləşdir</Link>
+        <Link to="/create">+ Elan Yerləşdir</Link>
         <Link to="/myads">Elanlarım</Link>
         <Link to="/login">Daxil ol</Link>
+         <Link to="/register">Qeydiyyatdan kec</Link>
       </div>
     </nav>
   );
