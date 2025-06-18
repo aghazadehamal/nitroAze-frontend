@@ -1,11 +1,11 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 // import Home from "./components/home/Home"; // İSTİFADƏ OLUNMUR, SİLİNDİ
-import CreateAd from "./CreateAd";
-import EditAd from "./EditAd";
+import CreateAd from "./components/create/CreateAd";
+import EditAd from "./components/edit/EditAd";
 
-import Login from './components/Login';
-import Register from './components/Register';
+import Login from './components/login/Login';
+import Register from './components/register/Register';
 import Container from "./components/Container";
 
 function App() {

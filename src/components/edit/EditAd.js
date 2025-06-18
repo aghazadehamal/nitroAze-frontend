@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
+import styles from './EditAd.module.css';
 
 const EditAd = () => {
   const { id } = useParams();
@@ -52,9 +53,7 @@ const EditAd = () => {
 
     const res = await fetch(`https://shop-backend-le06.onrender.com/api/cars/${id}`, {
       method: "PUT",
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
+      headers: { Authorization: `Bearer ${token}` },
       body: formDataToSend,
     });
 
@@ -68,8 +67,8 @@ const EditAd = () => {
   };
 
   return (
-    <div style={{ padding: "1rem" }}>
-      <h2>🔧 Elanı Redaktə Et</h2>
+    <div className={styles.container}>
+      <h2 className={styles.heading}>🔧 Elanı Redaktə Et</h2>
 
       {Object.entries(formData).map(([key, value]) => (
         key !== "image_url" && (
@@ -79,31 +78,28 @@ const EditAd = () => {
             value={value || ""}
             placeholder={key}
             onChange={handleChange}
-            style={{ display: "block", marginBottom: "0.5rem" }}
+            className={styles.input}
           />
         )
       ))}
 
-      {/* Mövcud şəkil göstərilir */}
       {formData.image_url && (
-        <div style={{ marginBottom: "0.5rem" }}>
+        <div className={styles.imagePreview}>
           <img
             src={`https://shop-backend-le06.onrender.com${formData.image_url}`}
             alt="Cari şəkil"
-            width="200"
           />
         </div>
       )}
 
-      {/* Yeni şəkil seçmək üçün input */}
       <input
         type="file"
         accept="image/*"
         onChange={handleImageChange}
-        style={{ marginBottom: "1rem" }}
+        className={styles.input}
       />
 
-      <button onClick={handleUpdate}>Yenilə</button>
+      <button onClick={handleUpdate} className={styles.button}>Yenilə</button>
     </div>
   );
 };
