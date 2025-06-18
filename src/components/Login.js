@@ -18,7 +18,7 @@ setPassword(e.target.value)
 
 
 const handleClick = () => {
-    fetch('hhttps://shop-backend-le06.onrender.com/api/auth/login', {
+    fetch('https://shop-backend-le06.onrender.com/api/auth/login', {
   method: 'POST',
   headers: {
     'Content-Type': 'application/json',
