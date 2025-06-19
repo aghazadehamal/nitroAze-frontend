@@ -109,7 +109,7 @@ const Home = () => {
       {sortedCars.map((car) => (
         <div key={car.id} className={styles.card}>
           <h3>{car.marka} {car.model} ({car.il})</h3>
-          <p>Yürüş: {car.yürüş}</p>
+          <p>Yürüş: {car.yurus}</p>
           <p>Qiymət: {car.price} AZN</p>
           <p>{car.description}</p>
           {car.image_url && (
