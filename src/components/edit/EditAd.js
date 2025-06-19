@@ -11,7 +11,7 @@ const EditAd = () => {
     marka: "",
     model: "",
     il: "",
-    yürüş: "",
+    yurus: "",
     price: "",
     description: "",
     image_url: ""
