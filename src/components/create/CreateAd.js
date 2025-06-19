@@ -44,7 +44,7 @@ const CreateAd = () => {
       <input className={styles.input} placeholder="Marka" value={marka} onChange={(e) => setMarka(e.target.value)} />
       <input className={styles.input} placeholder="Model" value={model} onChange={(e) => setModel(e.target.value)} />
       <input className={styles.input} placeholder="İl" value={il} onChange={(e) => setIl(e.target.value)} />
-      <input className={styles.input} placeholder="Yürüş" value={yurus} onChange={(e) => setYürüş(e.target.value)} />
+      <input className={styles.input} placeholder="Yürüş" value={yürüş} onChange={(e) => setYürüş(e.target.value)} />
       <input className={styles.input} placeholder="Qiymət" value={price} onChange={(e) => setPrice(e.target.value)} />
       <input className={styles.input} placeholder="Açıqlama" value={description} onChange={(e) => setDescription(e.target.value)} />
       <input className={styles.input} type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
