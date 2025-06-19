@@ -5,7 +5,7 @@ const CreateAd = () => {
   const [marka, setMarka] = useState("");
   const [model, setModel] = useState("");
   const [il, setIl] = useState("");
-  const [yurus, setYurus] = useState("");
+  const [yürüş, setYürüş] = useState("");
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
@@ -17,7 +17,7 @@ const CreateAd = () => {
     formData.append("marka", marka);
     formData.append("model", model);
     formData.append("il", il);
-    formData.append("yürüş", yurus);
+    formData.append("yürüş", yürüş);
     formData.append("price", price);
     formData.append("description", description);
     if (image) formData.append("image", image);
@@ -44,7 +44,7 @@ const CreateAd = () => {
       <input className={styles.input} placeholder="Marka" value={marka} onChange={(e) => setMarka(e.target.value)} />
       <input className={styles.input} placeholder="Model" value={model} onChange={(e) => setModel(e.target.value)} />
       <input className={styles.input} placeholder="İl" value={il} onChange={(e) => setIl(e.target.value)} />
-      <input className={styles.input} placeholder="Yürüş" value={yurus} onChange={(e) => setYurus(e.target.value)} />
+      <input className={styles.input} placeholder="Yürüş" value={yurus} onChange={(e) => setYürüş(e.target.value)} />
       <input className={styles.input} placeholder="Qiymət" value={price} onChange={(e) => setPrice(e.target.value)} />
       <input className={styles.input} placeholder="Açıqlama" value={description} onChange={(e) => setDescription(e.target.value)} />
       <input className={styles.input} type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
