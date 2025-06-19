@@ -6,22 +6,34 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleClick = () => {
-    fetch('http://localhost:4000/api/auth/register', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ username, email, password })
-    })
-      .then((response) => response.json())
-      .then((data) => {
+ const handleClick = () => {
+  if (!username.trim() || !email.trim() || !password.trim()) {
+    alert("Bütün sahələri doldurun!");
+    return;
+  }
+
+  fetch('http://localhost:4000/api/auth/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ username, email, password })
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      if (data.message === 'Bütün sahələr doldurulmalıdır') {
+        alert("❌ Bütün sahələr doldurulmalıdır");
+      } else if (data.message === 'Bu email artıq istifadə olunub') {
+        alert("❌ Bu email artıq istifadə olunub");
+      } else {
         console.log('Success:', data);
         alert("✅ Qeydiyyat uğurludur");
-      })
-      .catch((error) => {
-        console.error('Error:', error);
-        alert("Qeydiyyat zamanı xəta baş verdi");
-      });
-  };
+      }
+    })
+    .catch((error) => {
+      console.error('Error:', error);
+      alert("Qeydiyyat zamanı xəta baş verdi");
+    });
+};
+
 
   return (
     <div className={styles.container}>
