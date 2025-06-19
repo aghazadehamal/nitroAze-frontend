@@ -17,7 +17,7 @@ const CreateAd = () => {
     formData.append("marka", marka);
     formData.append("model", model);
     formData.append("il", il);
-    formData.append("yürüş", yürüş);
+    formData.append("yürüş", yurus);
     formData.append("price", price);
     formData.append("description", description);
     if (image) formData.append("image", image);
