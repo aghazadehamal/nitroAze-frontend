@@ -15,7 +15,7 @@ const Home = () => {
 
    const getCars = useCallback(async () => {
     try {
-      const res = await fetch("https://shop-backend-le06.onrender.com/api/cars", {
+      const res = await fetch("http://localhost:4000/api/cars", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -27,7 +27,7 @@ const Home = () => {
 
   const handleDelete = async (id) => {
     try {
-      const res = await fetch(`https://shop-backend-le06.onrender.com/api/cars/${id}`, {
+      const res = await fetch(`http://localhost:4000/api/cars/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -114,7 +114,7 @@ const Home = () => {
           <p>{car.description}</p>
           {car.image_url && (
             <img
-              src={`https://shop-backend-le06.onrender.com${car.image_url}`}
+              src={`http://localhost:4000${car.image_url}`}
               alt={`${car.marka} şəkli`}
             />
           )}

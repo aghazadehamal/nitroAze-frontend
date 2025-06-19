@@ -27,7 +27,7 @@ setStock(e.target.value);
     }
 
     const handleClick = () => {
-    fetch(`https://shop-backend-le06.onrender.com/api/products/${id}`, {
+    fetch(`http://localhost:4000/api/products/${id}`, {
   method: 'PUT',
   headers: {
     'Content-Type': 'application/json',

@@ -22,7 +22,7 @@ const CreateAd = () => {
     formData.append("description", description);
     if (image) formData.append("image", image);
 
-    fetch("https://shop-backend-le06.onrender.com/api/cars", {
+    fetch("http://localhost:4000/api/cars", {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,

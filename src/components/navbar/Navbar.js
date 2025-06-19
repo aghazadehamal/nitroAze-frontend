@@ -6,7 +6,7 @@ const Navbar = () => {
   return (
     <nav className={styles.navbar}>
       <div className={styles.logo}>
-        <Link to="/">🚗 AvtoElan</Link>
+        <Link to="/">🚗 nitroAze</Link>
       </div>
       <div className={styles.links}>
         <Link to="/create">+ Elan Yerləşdir</Link>
