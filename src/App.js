@@ -5,6 +5,8 @@ import Login from './components/login/Login';
 import Register from './components/register/Register';
 import Container from "./components/Container";
 import ProtectedRoute from './components/ProtectedRoute'; // 👈 əlavə olunur
+import MyCars from "./components/myCars/MyCars";
+import View from './components/view/View';
 
 function App() {
   return (
@@ -29,6 +31,17 @@ function App() {
             </ProtectedRoute>
           }
         />
+
+         <Route
+          path="/mycars"
+          element={
+            <ProtectedRoute>
+              <MyCars />
+            </ProtectedRoute>
+          }
+        />
+
+         <Route path="/view/:id" element={<View />} />
 
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />

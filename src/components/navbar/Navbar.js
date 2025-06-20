@@ -10,7 +10,7 @@ const Navbar = () => {
       </div>
       <div className={styles.links}>
         <Link to="/create">+ Elan Yerləşdir</Link>
-        <Link to="/myads">Elanlarım</Link>
+        <Link to="/mycars">Elanlarım</Link>
         <Link to="/login">Daxil ol</Link>
          <Link to="/register">Qeydiyyatdan kec</Link>
       </div>
