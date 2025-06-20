@@ -12,7 +12,7 @@ const Register = () => {
     return;
   }
 
-  fetch('https://shop-backend-le06.onrender.com/api/auth/register', {
+  fetch('http://localhost:4000/api/auth/register', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ username, email, password })
