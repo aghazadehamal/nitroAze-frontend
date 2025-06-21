@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useCallback } from "react";
 
 import styles from './Home.module.css';
-import { Link } from "react-router-dom"; // yuxarı hissəyə əlavə et
+import { Link } from "react-router-dom"; 
 
 
 
@@ -15,7 +15,7 @@ const Home = () => {
 
    const getCars = useCallback(async () => {
     try {
-      const res = await fetch("https://shop-backend-le06.onrender.com/api/cars", {
+      const res = await fetch("http://localhost:4000/api/cars", {
         headers: { Authorization: `Bearer ${token}` },
       });
       const data = await res.json();
@@ -26,28 +26,31 @@ const Home = () => {
   }, [token]); 
 
   const handleDelete = async (id) => {
-    try {
-      const res = await fetch(`https://shop-backend-le06.onrender.com/api/cars/${id}`, {
-        method: "DELETE",
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const data = await res.json();
-      if (res.ok) {
-        alert("Elan silindi");
-        getCars();
-      } else {
-        alert(data.message || "Silmə alınmadı");
-      }
-    } catch (err) {
-      console.error("Silmə xətası:", err);
+  const confirmDelete = window.confirm("Bu elanı silmək istədiyinizə əminsiniz?");
+  if (!confirmDelete) return;
+
+  try {
+    const res = await fetch(`http://localhost:4000/api/cars/${id}`, {
+      method: "DELETE",
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    if (res.ok) {
+      alert("✅ Elan silindi");
+      getCars();
+    } else {
+      alert(data.message || "❌ Silmə alınmadı");
     }
-  };
+  } catch (err) {
+    console.error("Silmə xətası:", err);
+  }
+};
+
 
   useEffect(() => {
     getCars();
   }, [getCars]);
 
-  // 🧠 Filter və sort logic
   const filteredCars = cars
     .filter((car) =>
       `${car.marka} ${car.model} ${car.description}`
@@ -74,7 +77,7 @@ const Home = () => {
   <div className={styles.container}>
     <h2>🚗 Bütün Avtomobil Elanları</h2>
 
-    {/* 🔍 Axtarış və Filter */}
+  
     <div className={styles.filters}>
       <input
         type="text"
@@ -104,7 +107,7 @@ const Home = () => {
       </select>
     </div>
 
-    {/* 🧾 Elanlar siyahısı */}
+   
     <div className={styles.cardGrid}>
       {sortedCars.map((car) => (
         <div key={car.id} className={styles.card}>

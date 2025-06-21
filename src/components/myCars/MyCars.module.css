@@ -18,14 +18,14 @@
   font-size: 1rem;
 }
 
-/* ⬇️ Kartları düzənləyən grid */
+
 .cardGrid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1.5rem;
 }
 
-/* ⬇️ Tək kartın stili */
+
 .card {
   border: 1px solid #ddd;
   border-radius: 10px;

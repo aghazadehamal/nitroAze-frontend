@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import styles from './CreateAd.module.css';
 
 const CreateAd = () => {
@@ -11,8 +12,8 @@ const CreateAd = () => {
   const [image, setImage] = useState(null);
   const [phone, setPhone] = useState("");
 
-
   const token = localStorage.getItem("token");
+  const navigate = useNavigate(); 
 
   const handleSubmit = () => {
     const formData = new FormData();
@@ -23,10 +24,9 @@ const CreateAd = () => {
     formData.append("price", price);
     formData.append("description", description);
     formData.append("phone", phone);
-
     if (image) formData.append("image", image);
 
-    fetch("https://shop-backend-le06.onrender.com/api/cars", {
+    fetch("http://localhost:4000/api/cars", {
       method: "POST",
       headers: { Authorization: `Bearer ${token}` },
       body: formData,
@@ -34,7 +34,7 @@ const CreateAd = () => {
       .then((res) => res.json())
       .then((data) => {
         alert("✅ Elan uğurla yaradıldı!");
-        console.log("Yeni elan:", data);
+        navigate("/"); 
       })
       .catch((err) => {
         console.error("Elan əlavə edilərkən xəta:", err);
@@ -48,17 +48,11 @@ const CreateAd = () => {
       <input className={styles.input} placeholder="Marka" value={marka} onChange={(e) => setMarka(e.target.value)} />
       <input className={styles.input} placeholder="Model" value={model} onChange={(e) => setModel(e.target.value)} />
       <input className={styles.input} placeholder="İl" value={il} onChange={(e) => setIl(e.target.value)} />
-      <input className={styles.input} placeholder="Yurus" value={yurus} onChange={(e) => setYurus(e.target.value)} />
+      <input className={styles.input} placeholder="Yürüş" value={yurus} onChange={(e) => setYurus(e.target.value)} />
       <input className={styles.input} placeholder="Qiymət" value={price} onChange={(e) => setPrice(e.target.value)} />
       <input className={styles.input} placeholder="Açıqlama" value={description} onChange={(e) => setDescription(e.target.value)} />
       <input className={styles.input} type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
-      <input
-  className={styles.input}
-  placeholder="Əlaqə nömrəsi"
-  value={phone}
-  onChange={(e) => setPhone(e.target.value)}
-/>
-
+      <input className={styles.input} placeholder="Əlaqə nömrəsi" value={phone} onChange={(e) => setPhone(e.target.value)} />
 
       <button className={styles.button} onClick={handleSubmit}>
         Elanı Yarat
