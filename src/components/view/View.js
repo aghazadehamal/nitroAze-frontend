@@ -36,6 +36,7 @@ const View = () => {
           <p>Yürüş: {cars.yurus}</p>
           <p>Qiymət: {cars.price} AZN</p>
           <p>{cars.description}</p>
+          <p>Əlaqə: {cars.phone} </p>
           {cars.image_url && (
           <img src={cars.image_url} alt={`${cars.marka} şəkli`} />
 
