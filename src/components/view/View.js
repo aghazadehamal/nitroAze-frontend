@@ -10,17 +10,18 @@ const View = () => {
           const token = localStorage.getItem("token");
           const {id} = useParams(); 
         
-          const getCars = useCallback(async () => {
-      try {
-        const res = await fetch(`http://localhost:4000/api/cars/${id}`, {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        const data = await res.json();
-        setCars(data);
-      } catch (err) {
-        console.error("Xəta baş verdi:", err);
-      }
-    }, [token]);
+         const getCars = useCallback(async () => {
+  try {
+    const res = await fetch(`http://localhost:4000/api/cars/${id}`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    const data = await res.json();
+    setCars(data);
+  } catch (err) {
+    console.error("Xəta baş verdi:", err);
+  }
+}, [token, id]); 
+
 
      useEffect(() => {
             getCars();
