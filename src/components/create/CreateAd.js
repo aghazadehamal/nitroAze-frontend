@@ -9,6 +9,8 @@ const CreateAd = () => {
   const [price, setPrice] = useState("");
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
+  const [phone, setPhone] = useState("");
+
 
   const token = localStorage.getItem("token");
 
@@ -20,6 +22,8 @@ const CreateAd = () => {
     formData.append("yurus", yurus);
     formData.append("price", price);
     formData.append("description", description);
+    formData.append("phone", phone);
+
     if (image) formData.append("image", image);
 
     fetch("https://shop-backend-le06.onrender.com/api/cars", {
@@ -48,6 +52,13 @@ const CreateAd = () => {
       <input className={styles.input} placeholder="Qiymət" value={price} onChange={(e) => setPrice(e.target.value)} />
       <input className={styles.input} placeholder="Açıqlama" value={description} onChange={(e) => setDescription(e.target.value)} />
       <input className={styles.input} type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
+      <input
+  className={styles.input}
+  placeholder="Əlaqə nömrəsi"
+  value={phone}
+  onChange={(e) => setPhone(e.target.value)}
+/>
+
 
       <button className={styles.button} onClick={handleSubmit}>
         Elanı Yarat

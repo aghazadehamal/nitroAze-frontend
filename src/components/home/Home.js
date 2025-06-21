@@ -112,6 +112,7 @@ const Home = () => {
           <p>Yürüş: {car.yurus}</p>
           <p>Qiymət: {car.price} AZN</p>
           <p>{car.description}</p>
+          <p>Əlaqə: {car.phone} </p>
           {car.image_url && (
           <img src={car.image_url} alt={`${car.marka} şəkli`} />
 
@@ -123,7 +124,8 @@ const Home = () => {
   </Link>
 
    <Link to={`/view/${car.id}`}>
-    <button>✏️ Detalli bax</button>
+   <button>👁️ Detallı bax</button>
+
   </Link>
 </div>
 

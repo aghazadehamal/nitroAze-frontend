@@ -111,7 +111,9 @@ const MyCars = () => {
           <h3>{car.marka} {car.model} ({car.il})</h3>
           <p>Yürüş: {car.yurus}</p>
           <p>Qiymət: {car.price} AZN</p>
+          
           <p>{car.description}</p>
+          <p>Əlaqə: {car.phone} </p>
           {car.image_url && (
           <img src={car.image_url} alt={`${car.marka} şəkli`} />
 

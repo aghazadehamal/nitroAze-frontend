@@ -7,15 +7,17 @@ const EditAd = () => {
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
 
-  const [formData, setFormData] = useState({
-    marka: "",
-    model: "",
-    il: "",
-    yurus: "",
-    price: "",
-    description: "",
-    image_url: ""
-  });
+ const [formData, setFormData] = useState({
+  marka: "",
+  model: "",
+  il: "",
+  yurus: "",
+  price: "",
+  description: "",
+  phone: "",       
+  image_url: ""
+});
+
 
   const [imageFile, setImageFile] = useState(null);
 
@@ -70,18 +72,19 @@ const EditAd = () => {
     <div className={styles.container}>
       <h2 className={styles.heading}>🔧 Elanı Redaktə Et</h2>
 
-      {Object.entries(formData).map(([key, value]) => (
-        key !== "image_url" && (
-          <input
-            key={key}
-            name={key}
-            value={value || ""}
-            placeholder={key}
-            onChange={handleChange}
-            className={styles.input}
-          />
-        )
-      ))}
+     {Object.entries(formData).map(([key, value]) => (
+  key !== "image_url" && (
+    <input
+      key={key}
+      name={key}
+      value={value || ""}
+      placeholder={key === "phone" ? "Əlaqə nömrəsi" : key}
+      onChange={handleChange}
+      className={styles.input}
+    />
+  )
+))}
+
 
       {formData.image_url && (
         <div className={styles.imagePreview}>
@@ -98,6 +101,15 @@ const EditAd = () => {
         onChange={handleImageChange}
         className={styles.input}
       />
+      
+      <input
+  name="phone"
+  value={formData.phone}
+  placeholder="Əlaqə nömrəsi"
+  onChange={handleChange}
+  className={styles.input}
+/>
+
 
       <button onClick={handleUpdate} className={styles.button}>Yenilə</button>
     </div>
