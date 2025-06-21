@@ -7,7 +7,7 @@ const ViewProduct = () => {
 
      const getProducts = async () => {
     try {
-      const res = await fetch(`http://localhost:4000/api/products/${id}`);
+      const res = await fetch(`https://shop-backend-le06.onrender.com/api/products/${id}`);
 
       const data = await res.json();
       setProduct(data);

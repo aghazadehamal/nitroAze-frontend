@@ -25,7 +25,7 @@ const Checkout = ({ cart, setCart }) => {
 
   const submitOrder = async () => {
     try {
-      const res = await fetch("http://localhost:4000/api/orders", {
+      const res = await fetch("https://shop-backend-le06.onrender.com/api/orders", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

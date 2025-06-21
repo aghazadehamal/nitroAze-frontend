@@ -12,7 +12,7 @@ const MyCars = () => {
     
       const getCars = useCallback(async () => {
   try {
-    const res = await fetch("http://localhost:4000/api/cars/my", {
+    const res = await fetch("https://shop-backend-le06.onrender.com/api/cars/my", {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
@@ -25,7 +25,7 @@ const MyCars = () => {
     
       const handleDelete = async (id) => {
         try {
-          const res = await fetch(`http://localhost:4000/api/cars/${id}`, {
+          const res = await fetch(`https://shop-backend-le06.onrender.com/api/cars/${id}`, {
             method: "DELETE",
             headers: { Authorization: `Bearer ${token}` },
           });
