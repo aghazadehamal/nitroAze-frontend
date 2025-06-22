@@ -66,3 +66,41 @@
 .actions button:hover {
   background-color: #eee;
 }
+
+
+
+/* Home.module.css */
+
+.skeletonCard {
+  background-color: #e2e2e2;
+  border-radius: 8px;
+  padding: 16px;
+  animation: pulse 1.5s infinite;
+  min-height: 150px;
+}
+
+.skeletonLine {
+  height: 16px;
+  background-color: #ccc;
+  margin: 10px 0;
+  border-radius: 4px;
+}
+
+.skeletonImage {
+  height: 100px;
+  background-color: #d0d0d0;
+  border-radius: 8px;
+  margin-bottom: 12px;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}
