@@ -37,7 +37,7 @@ const Home = () => {
   } finally {
     setLoading(false); 
   }
-}, [token]);
+}, [token, decoded, userId]);
 
 
   const handleDelete = async (id) => {
