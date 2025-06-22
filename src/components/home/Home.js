@@ -17,7 +17,8 @@ const Home = () => {
   const decoded = useMemo(() => jwtDecode(token), [token]);
   const userId = useMemo(() => decoded.userId, [decoded]);
 
-  const getCars = async () => {
+ useEffect(() => {
+  const fetchData = async () => {
     setLoading(true);
     try {
       const res = await fetch("https://shop-backend-le06.onrender.com/api/cars", {
@@ -31,6 +32,10 @@ const Home = () => {
       setLoading(false);
     }
   };
+
+  fetchData(); 
+}, [token]);
+
 
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Bu elanı silmək istədiyinizə əminsiniz?");
@@ -53,9 +58,7 @@ const Home = () => {
     }
   };
 
-  useEffect(() => {
-    getCars();
-  }, []); 
+ 
 
   const filteredCars = cars
     .filter((car) =>
