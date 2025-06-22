@@ -13,32 +13,28 @@ const Home = () => {
 
   const token = localStorage.getItem("token");
 
-  // Decode token once
   const decoded = useMemo(() => jwtDecode(token), [token]);
   const userId = useMemo(() => decoded.userId, [decoded]);
 
-  // ✅ getCars funksiyası yuxarıda təyin olunur
-  const getCars = async () => {
-    setLoading(true);
-    try {
-      const res = await fetch("https://shop-backend-le06.onrender.com/api/cars", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      const data = await res.json();
-      setCars(data);
-    } catch (err) {
-      console.error("Xəta baş verdi:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  // ✅ ilk renderdə bir dəfə cars-ları yüklə
   useEffect(() => {
-    getCars();
-  }, [token]); // token dəyişsə, yenidən çağır
+    const fetchCars = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch("https://shop-backend-le06.onrender.com/api/cars", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const data = await res.json();
+        setCars(data);
+      } catch (err) {
+        console.error("Xəta baş verdi:", err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-  // Silmə funksiyası
+    fetchCars();
+  }, [token]);
+
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Bu elanı silmək istədiyinizə əminsiniz?");
     if (!confirmDelete) return;
@@ -51,7 +47,12 @@ const Home = () => {
       const data = await res.json();
       if (res.ok) {
         alert("✅ Elan silindi");
-        getCars(); // yenidən siyahını yüklə
+
+        const refreshed = await fetch("https://shop-backend-le06.onrender.com/api/cars", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        const updated = await refreshed.json();
+        setCars(updated);
       } else {
         alert(data.message || "❌ Silmə alınmadı");
       }
@@ -60,7 +61,6 @@ const Home = () => {
     }
   };
 
-  // Filtr və sort
   const filteredCars = cars
     .filter((car) =>
       `${car.marka} ${car.model} ${car.description}`
@@ -132,7 +132,9 @@ const Home = () => {
               <p>Qiymət: {car.price} AZN</p>
               <p>{car.description}</p>
               <p>Əlaqə: {car.phone}</p>
-              {car.image_url && <img src={car.image_url} alt={`${car.marka} şəkli`} />}
+              {car.image_url && (
+                <img src={car.image_url} alt={`${car.marka} şəkli`} />
+              )}
 
               <div className={styles.actions}>
                 {car.user_id === userId && (
