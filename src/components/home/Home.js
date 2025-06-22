@@ -13,12 +13,12 @@ const Home = () => {
 
   const token = localStorage.getItem("token");
 
- 
+  // Decode token once
   const decoded = useMemo(() => jwtDecode(token), [token]);
   const userId = useMemo(() => decoded.userId, [decoded]);
 
- useEffect(() => {
-  const fetchData = async () => {
+  // ✅ getCars funksiyası yuxarıda təyin olunur
+  const getCars = async () => {
     setLoading(true);
     try {
       const res = await fetch("https://shop-backend-le06.onrender.com/api/cars", {
@@ -33,10 +33,12 @@ const Home = () => {
     }
   };
 
-  fetchData(); 
-}, [token]);
+  // ✅ ilk renderdə bir dəfə cars-ları yüklə
+  useEffect(() => {
+    getCars();
+  }, [token]); // token dəyişsə, yenidən çağır
 
-
+  // Silmə funksiyası
   const handleDelete = async (id) => {
     const confirmDelete = window.confirm("Bu elanı silmək istədiyinizə əminsiniz?");
     if (!confirmDelete) return;
@@ -49,7 +51,7 @@ const Home = () => {
       const data = await res.json();
       if (res.ok) {
         alert("✅ Elan silindi");
-        getCars();
+        getCars(); // yenidən siyahını yüklə
       } else {
         alert(data.message || "❌ Silmə alınmadı");
       }
@@ -58,8 +60,7 @@ const Home = () => {
     }
   };
 
- 
-
+  // Filtr və sort
   const filteredCars = cars
     .filter((car) =>
       `${car.marka} ${car.model} ${car.description}`
