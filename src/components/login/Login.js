@@ -2,11 +2,14 @@ import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import styles from './Login.module.css';
 
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  
+
 
   const handleClick = () => {
     fetch('https://shop-backend-le06.onrender.com/api/auth/login', {
@@ -16,6 +19,8 @@ const Login = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        console.log(data);
+        
         if (data.token) {
           localStorage.setItem("token", data.token);
           alert("✅ Giriş uğurludur");

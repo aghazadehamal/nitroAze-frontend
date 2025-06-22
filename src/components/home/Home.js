@@ -1,4 +1,5 @@
 import React, { useEffect, useState, useCallback } from "react";
+import { jwtDecode } from 'jwt-decode';
 
 import styles from './Home.module.css';
 import { Link } from "react-router-dom"; 
@@ -14,14 +15,22 @@ const Home = () => {
   const [loading, setLoading] = useState(true);
 
   const token = localStorage.getItem("token");
+  const decoded = jwtDecode(token);
+  const userId = decoded.userId
 
  const getCars = useCallback(async () => {
+
   setLoading(true); 
   try {
     const res = await fetch("https://shop-backend-le06.onrender.com/api/cars", {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
+      console.log(decoded);
+      console.log(decoded.userId);
+      console.log(userId);
+     
+      
     setCars(data);
   } catch (err) {
     console.error("Xəta baş verdi:", err);
@@ -138,15 +147,20 @@ const Home = () => {
         {car.image_url && (
           <img src={car.image_url} alt={`${car.marka} şəkli`} />
         )}
-        <div className={styles.actions}>
-          <button onClick={() => handleDelete(car.id)}>❌ Sil</button>
-          <Link to={`/edit/${car.id}`}>
-            <button>✏️ Redaktə Et</button>
-          </Link>
-          <Link to={`/view/${car.id}`}>
-            <button>👁️ Detallı bax</button>
-          </Link>
-        </div>
+       <div className={styles.actions}>
+  {car.user_id === userId && (
+    <>
+      <button onClick={() => handleDelete(car.id)}>❌ Sil</button>
+      <Link to={`/edit/${car.id}`}>
+        <button>✏️ Redaktə Et</button>
+      </Link>
+    </>
+  )}
+  <Link to={`/view/${car.id}`}>
+    <button>👁️ Detallı bax</button>
+  </Link>
+</div>
+
       </div>
     ))}
   </div>

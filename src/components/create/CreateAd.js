@@ -11,6 +11,8 @@ const CreateAd = () => {
   const [description, setDescription] = useState("");
   const [image, setImage] = useState(null);
   const [phone, setPhone] = useState("");
+  const [imagePreview, setImagePreview] = useState(null);
+
 
   const token = localStorage.getItem("token");
   const navigate = useNavigate(); 
@@ -51,8 +53,23 @@ const CreateAd = () => {
       <input className={styles.input} placeholder="Yürüş" value={yurus} onChange={(e) => setYurus(e.target.value)} />
       <input className={styles.input} placeholder="Qiymət" value={price} onChange={(e) => setPrice(e.target.value)} />
       <input className={styles.input} placeholder="Açıqlama" value={description} onChange={(e) => setDescription(e.target.value)} />
-      <input className={styles.input} type="file" accept="image/*" onChange={(e) => setImage(e.target.files[0])} />
+      <input className={styles.input} type="file" accept="image/*" onChange={(e) => {
+  const file = e.target.files[0];
+  if (file) {
+    setImage(file);
+    setImagePreview(URL.createObjectURL(file)); // preview üçün URL yaradır
+  }
+}}
+/>
       <input className={styles.input} placeholder="Əlaqə nömrəsi" value={phone} onChange={(e) => setPhone(e.target.value)} />
+
+      {imagePreview && (
+  <div className={styles.previewWrapper}>
+    <p>📷 Seçilmiş şəkil:</p>
+    <img src={imagePreview} alt="Seçilmiş şəkil" className={styles.previewImage} />
+  </div>
+)}
+
 
       <button className={styles.button} onClick={handleSubmit}>
         Elanı Yarat

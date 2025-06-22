@@ -77,6 +77,10 @@ const MyCars = () => {
     <button>✏️ Redaktə Et</button>
   </Link>
 
+  <Link to={`/view/${car.id}`}>
+      <button>👁️ Detallı bax</button>
+    </Link>
+
  
 </div>
 

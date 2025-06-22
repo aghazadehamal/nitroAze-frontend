@@ -6,6 +6,7 @@ const EditAd = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const token = localStorage.getItem("token");
+    const [imagePreview, setImagePreview] = useState(null);
 
  const [formData, setFormData] = useState({
   marka: "",
@@ -39,7 +40,11 @@ const EditAd = () => {
   };
 
   const handleImageChange = (e) => {
-    setImageFile(e.target.files[0]);
+    const file = e.target.files[0];
+  if (file) {
+   setImageFile(file);
+    setImagePreview(URL.createObjectURL(file)); 
+  }
   };
 
   const handleUpdate = async () => {
@@ -86,14 +91,14 @@ const EditAd = () => {
 ))}
 
 
-      {formData.image_url && (
-        <div className={styles.imagePreview}>
-          <img
-            src={`https://shop-backend-le06.onrender.com${formData.image_url}`}
-            alt="Cari şəkil"
-          />
-        </div>
-      )}
+     {!imagePreview && formData.image_url && (
+  <div className={styles.imagePreview}>
+    <img src={formData.image_url} alt="Cari şəkil" className={styles.previewImage} />
+  </div>
+)}
+
+
+
 
       <input
         type="file"
@@ -102,14 +107,15 @@ const EditAd = () => {
         className={styles.input}
       />
 
-      <input
-  name="phone"
-  value={formData.phone}
-  placeholder="Əlaqə nömrəsi"
-  onChange={handleChange}
-  className={styles.input}
-/>
+    
 
+
+ {imagePreview && (
+  <div className={styles.previewWrapper}>
+    <p>📷 Seçilmiş şəkil:</p>
+    <img src={imagePreview} alt="Seçilmiş şəkil" className={styles.previewImage} />
+  </div>
+)}
 
       <button onClick={handleUpdate} className={styles.button}>Yenilə</button>
     </div>
