@@ -25,7 +25,7 @@ const EditAd = () => {
   useEffect(() => {
     const fetchAd = async () => {
       try {
-        const res = await fetch(`http://localhost:4000/api/cars/${id}`);
+        const res = await fetch(`https://shop-backend-le06.onrender.com/api/cars/${id}`);
         const data = await res.json();
         setFormData(data);
       } catch (err) {
@@ -58,7 +58,7 @@ const EditAd = () => {
       formDataToSend.append("image", imageFile);
     }
 
-    const res = await fetch(`http://localhost:4000/api/cars/${id}`, {
+    const res = await fetch(`https://shop-backend-le06.onrender.com/api/cars/${id}`, {
       method: "PUT",
       headers: { Authorization: `Bearer ${token}` },
       body: formDataToSend,

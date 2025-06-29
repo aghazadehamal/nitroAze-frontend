@@ -31,7 +31,7 @@ const userId = useMemo(() => decoded?.userId || null, [decoded]);
     const fetchCars = async () => {
       setLoading(true);
       try {
-        const res = await fetch("http://localhost:4000/api/cars", {
+        const res = await fetch("https://shop-backend-le06.onrender.com/api/cars", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -51,7 +51,7 @@ const userId = useMemo(() => decoded?.userId || null, [decoded]);
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`http://localhost:4000/api/cars/${id}`, {
+      const res = await fetch(`https://shop-backend-le06.onrender.com/api/cars/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -59,7 +59,7 @@ const userId = useMemo(() => decoded?.userId || null, [decoded]);
       if (res.ok) {
         alert("✅ Elan silindi");
 
-        const refreshed = await fetch("http://localhost:4000/api/cars", {
+        const refreshed = await fetch("https://shop-backend-le06.onrender.com/api/cars", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const updated = await refreshed.json();
@@ -144,7 +144,7 @@ const userId = useMemo(() => decoded?.userId || null, [decoded]);
               <p>{car.description}</p>
               <p>Əlaqə: {car.phone}</p>
               {car.image_urls && car.image_urls.length > 0 && (
-  <img src={`http://localhost:4000/${car.image_urls[0]}`} alt={`${car.marka} şəkli`} />
+  <img src={`https://shop-backend-le06.onrender.com/${car.image_urls[0]}`} alt={`${car.marka} şəkli`} />
 )}
 
 
