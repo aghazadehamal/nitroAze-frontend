@@ -7,12 +7,14 @@ const MyCars = () => {
 
 
      const [cars, setCars] = useState([]);
+      const [loading, setLoading] = useState(true);
    
       const token = localStorage.getItem("token");
     
       const getCars = useCallback(async () => {
+         setLoading(true);
   try {
-    const res = await fetch("https://shop-backend-le06.onrender.com/api/cars/my", {
+    const res = await fetch("http://localhost:4000/api/cars/my", {
       headers: { Authorization: `Bearer ${token}` },
     });
     const data = await res.json();
@@ -20,6 +22,10 @@ const MyCars = () => {
   } catch (err) {
     console.error("Xəta baş verdi:", err);
   }
+
+  finally {
+        setLoading(false);
+      }
 }, [token]);
  
     
@@ -28,7 +34,7 @@ const MyCars = () => {
   if (!confirmDelete) return;
 
   try {
-    const res = await fetch(`https://shop-backend-le06.onrender.com/api/cars/${id}`, {
+    const res = await fetch(`http://localhost:4000/api/cars/${id}`, {
       method: "DELETE",
       headers: { Authorization: `Bearer ${token}` },
     });
@@ -58,35 +64,47 @@ const MyCars = () => {
     <h2>🚗 Mənim Elanlarım</h2>
 
     
-    <div className={styles.cardGrid}>
-      {cars.map((car) => (
-        <div key={car.id} className={styles.card}>
-          <h3>{car.marka} {car.model} ({car.il})</h3>
-          <p>Yürüş: {car.yurus}</p>
-          <p>Qiymət: {car.price} AZN</p>
-          
-          <p>{car.description}</p>
-          <p>Əlaqə: {car.phone} </p>
-          {car.image_url && (
-          <img src={car.image_url} alt={`${car.marka} şəkli`} />
-
-          )}
-         <div className={styles.actions}>
-  <button onClick={() => handleDelete(car.id)}>❌ Sil</button>
-  <Link to={`/edit/${car.id}`}>
-    <button>✏️ Redaktə Et</button>
-  </Link>
-
-  <Link to={`/view/${car.id}`}>
-      <button>👁️ Detallı bax</button>
-    </Link>
-
- 
-</div>
-
-        </div>
-      ))}
-    </div>
+   <div className={styles.cardGrid}>
+           {loading ? (
+             [...Array(15)].map((_, index) => (
+               <div key={index} className={styles.skeletonCard}>
+                 <div className={styles.skeletonImage}></div>
+                 <div className={styles.skeletonLine}></div>
+                 <div className={styles.skeletonLine}></div>
+                 <div className={styles.skeletonLine}></div>
+               </div>
+             ))
+           ) : (
+             cars.map((car) => (
+               <div key={car.id} className={styles.card}>
+                 <h3>
+                   {car.marka} {car.model} ({car.il})
+                 </h3>
+                 <p>Yürüş: {car.yurus}</p>
+                 <p>Qiymət: {car.price} AZN</p>
+                 <p>{car.description}</p>
+                 <p>Əlaqə: {car.phone}</p>
+                 {car.image_url && (
+                   <img src={car.image_url} alt={`${car.marka} şəkli`} />
+                 )}
+   
+                 <div className={styles.actions}>
+                  
+                  
+                       <button onClick={() => handleDelete(car.id)}>❌ Sil</button>
+                       <Link to={`/edit/${car.id}`}>
+                         <button>✏️ Redaktə Et</button>
+                       </Link>
+                    
+                   
+                   <Link to={`/view/${car.id}`}>
+                     <button>👁️ Detallı bax</button>
+                   </Link>
+                 </div>
+               </div>
+             ))
+           )}
+         </div>
   </div>
   )
 }

@@ -13,14 +13,25 @@ const Home = () => {
 
   const token = localStorage.getItem("token");
 
-  const decoded = useMemo(() => jwtDecode(token), [token]);
-  const userId = useMemo(() => decoded.userId, [decoded]);
+  const decoded = useMemo(() => {
+  if (typeof token === "string") {
+    try {
+      return jwtDecode(token);
+    } catch (err) {
+      console.error("Token decode xətası:", err.message);
+      return null;
+    }
+  }
+  return null;
+}, [token]);
+
+const userId = useMemo(() => decoded?.userId || null, [decoded]);
 
   useEffect(() => {
     const fetchCars = async () => {
       setLoading(true);
       try {
-        const res = await fetch("https://shop-backend-le06.onrender.com/api/cars", {
+        const res = await fetch("http://localhost:4000/api/cars", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const data = await res.json();
@@ -40,7 +51,7 @@ const Home = () => {
     if (!confirmDelete) return;
 
     try {
-      const res = await fetch(`https://shop-backend-le06.onrender.com/api/cars/${id}`, {
+      const res = await fetch(`http://localhost:4000/api/cars/${id}`, {
         method: "DELETE",
         headers: { Authorization: `Bearer ${token}` },
       });
@@ -48,7 +59,7 @@ const Home = () => {
       if (res.ok) {
         alert("✅ Elan silindi");
 
-        const refreshed = await fetch("https://shop-backend-le06.onrender.com/api/cars", {
+        const refreshed = await fetch("http://localhost:4000/api/cars", {
           headers: { Authorization: `Bearer ${token}` },
         });
         const updated = await refreshed.json();
@@ -132,9 +143,10 @@ const Home = () => {
               <p>Qiymət: {car.price} AZN</p>
               <p>{car.description}</p>
               <p>Əlaqə: {car.phone}</p>
-              {car.image_url && (
-                <img src={car.image_url} alt={`${car.marka} şəkli`} />
-              )}
+              {car.image_urls && car.image_urls.length > 0 && (
+  <img src={`http://localhost:4000/${car.image_urls[0]}`} alt={`${car.marka} şəkli`} />
+)}
+
 
               <div className={styles.actions}>
                 {car.user_id === userId && (

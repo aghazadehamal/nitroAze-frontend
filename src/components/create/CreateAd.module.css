@@ -54,3 +54,20 @@
   border-radius: 8px;
  
 }
+
+
+
+
+.previewGrid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.previewImage {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+}
