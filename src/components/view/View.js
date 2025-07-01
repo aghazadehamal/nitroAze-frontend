@@ -37,9 +37,10 @@ const View = () => {
           <p>Qiymət: {cars.price} AZN</p>
           <p>{cars.description}</p>
           <p>Əlaqə: {cars.phone} </p>
-          {cars.image_urls && cars.image_urls.length > 0 && (
-  <img src={`https://shop-backend-le06.onrender.com/${cars.image_urls[0]}`} alt={`${cars.marka} şəkli`} />
-)}
+          {cars.image_url && (
+          <img src={cars.image_url} alt={`${cars.marka} şəkli`} />
+
+          )}
         
 
         </div>

@@ -13,7 +13,7 @@ const Home = () => {
 
   const token = localStorage.getItem("token");
 
-  const decoded = useMemo(() => {
+const decoded = useMemo(() => {
   if (typeof token === "string") {
     try {
       return jwtDecode(token);
@@ -143,10 +143,9 @@ const userId = useMemo(() => decoded?.userId || null, [decoded]);
               <p>Qiymət: {car.price} AZN</p>
               <p>{car.description}</p>
               <p>Əlaqə: {car.phone}</p>
-              {car.image_urls && car.image_urls.length > 0 && (
-  <img src={`https://shop-backend-le06.onrender.com/${car.image_urls[0]}`} alt={`${car.marka} şəkli`} />
-)}
-
+              {car.image_url && (
+                <img src={car.image_url} alt={`${car.marka} şəkli`} />
+              )}
 
               <div className={styles.actions}>
                 {car.user_id === userId && (
