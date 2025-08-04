@@ -5,9 +5,7 @@ import styles from './Register.module.css';
 const Register = () => {
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
-  const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
-  const [showPhone, setShowPhone] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const navigate = useNavigate();
@@ -17,7 +15,7 @@ const Register = () => {
       const res = await fetch('https://shop-backend-le06.onrender.com/api/auth/register', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ username, email, password, phone })
+        body: JSON.stringify({ username, email, password }) // phone çıxarıldı
       });
 
       const data = await res.json();
@@ -53,23 +51,6 @@ const Register = () => {
         value={email}
         onChange={(e) => setEmail(e.target.value)}
       />
-
-      <div className={styles.passwordWrapper}>
-        <input
-          className={styles.input}
-          type={showPhone ? "text" : "tel"}
-          placeholder="Telefon nömrəsi"
-          value={phone}
-          onChange={(e) => setPhone(e.target.value)}
-        />
-        <span
-          className={styles.togglePassword}
-          onClick={() => setShowPhone(!showPhone)}
-          title="Nömrəni göstər/gizlət"
-        >
-          {showPhone ? "🔒" : "👁️"}
-        </span>
-      </div>
 
       <div className={styles.passwordWrapper}>
         <input
