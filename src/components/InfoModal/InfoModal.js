@@ -16,7 +16,7 @@ const InfoModal = () => {
       <div className="modal-content">
         <h2>Layihə haqqında</h2>
      <p>⚠️ Bu layihə mənim fullstack  layihəmdir.</p>
-<p>⚠️ Backend Render-də host olunub. İlk yükləmədə məlumatların gəlməsi 20-30 saniyə çəkə bilər.</p>
+<p>⚠️ Backend Render-də host olunub. İlk yükləmədə məlumatların gəlməsi 20-30 saniyə çəkə bilər, gözlədiyiniz üçün təşəkkürlər.</p>
 <p>⚠️ Vizual dizayn tam hazır deyil, hələ üzərində işlənir.</p>
 <p>⚠️ Bütün funksiyalar işləkdir, yoxlaya bilərsiniz!</p>
 
