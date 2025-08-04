@@ -1,15 +1,16 @@
-import React from 'react'
-import Navbar from './navbar/Navbar'
-import Home from './home/Home'
+import React from 'react';
+import Navbar from './navbar/Navbar';
+import Home from './home/Home';
+import InfoModal from './InfoModal';
 
 const Container = () => {
   return (
     <div>
-        <Navbar/>
-        <Home/>
-      
+      <InfoModal /> 
+      <Navbar />
+      <Home />
     </div>
-  )
-}
+  );
+};
 
-export default Container
+export default Container;
